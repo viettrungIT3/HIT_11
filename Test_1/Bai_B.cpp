@@ -1,24 +1,15 @@
-#include <Bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-void Display( long a[], long n)
+bool ktSNT( int n)
 {
-    for (long i = 0; i < n; i++)
-    {
-        cout<<a[i]<<" ";
-    }
-    
-}
-
-bool ktSNT( long n)
-{
-    if ( n < 2 )
+    if (n < 2 )
     {
         return false;
     }
-    for (int i = 2; i <= sqrt((float)n); i++)
+    for (int i = 2; i <= sqrt((float)n ); i++)
     {
-        if ( n % i == 0 )
+        if ( n % i == 0)
         {
             return false;
         }
@@ -26,15 +17,15 @@ bool ktSNT( long n)
     return true;
 }
 
-void ShortArray( long a[], long n)
+void SortArr( int a[], int n)
 {
-    for (long i = 0; i < n-1; i++)
+    for (int i = 0; i < n-1; i++)
     {
-        for (long j = i+1; j < n; j++)
+        for (int j = i+1; j < n; j++)
         {
-            if ( a[i] > a[i] )
+            if ( a[i] > a[j] )
             {
-                long temp = a[i];
+                int temp = a[i];
                 a[i] = a[j];
                 a[j] = temp;
             }
@@ -42,39 +33,26 @@ void ShortArray( long a[], long n)
     }
 }
 
-void Insert_X( long a[], long &n, long vt, long X)
-{
-    for (int i = n; i > vt; i++)
-    {
-        a[i] = a[i-1];
-    }
-    a[vt] = X;
-    n++;
-}
-
 int main(int argc, char const *argv[])
 {
-    long N, X;
-    cin>>N>>X;
-    long Arr[4000];
-    for (int i = 0; i < N; i++)
+    int n, x;
+    int a[2000];
+    cin>>n>>x;
+    for (int i = 0; i < n; i++)
     {
-        cin>>Arr[i];
+        cin>>a[i];
     }
-    // ShortArray( Arr, N);
-    for (int i = 0; i < N; i++)
+    if ( ktSNT(x) )
     {
-        if ( ktSNT( Arr[i] ))
-        {
-            Insert_X( Arr, N, i, X);
-            if ( ktSNT( X ))
-            {
-                // i++;
-            }
-            
-        }
+        ++n;
+        a[n-1] = x;
     }
-    ShortArray(Arr, N);
-    Display( Arr, N);
+    SortArr( a, n);
+    for (int i = 0; i < n; i++)
+    {
+        cout<<a[i]<<" ";
+    }
     return 0;
 }
+
+
